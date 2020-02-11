@@ -27,7 +27,7 @@ import java.util.*;
 					String usuario;
 					HttpSession session = request.getSession(false);
 					if (session == null) {
-						out.println("<h3>No has iniciado sesión</h3>");
+						out.println("<h3>No has iniciado sesiÃ³n</h3>");
 					} else {
 						synchronized (session) {
 						usuario = (String) session.getAttribute("nombre");

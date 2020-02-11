@@ -56,7 +56,7 @@ public class ConsultaServlet extends HttpServlet {
 						
 						sesion.setAttribute("nombre", request.getParameter("Nombre"));
 						out.println("<p><a href='Bienvenido'>Bienvenido</a></p>");
-						out.println("<p><a href='Cambio'>Cambio de contrase�a</a></p>");
+						out.println("<p><a href='Cambio'>Cambio de contraseña</a></p>");
 						
 					} else {
 						
@@ -67,7 +67,7 @@ public class ConsultaServlet extends HttpServlet {
 							sesion.setAttribute("nombre",request.getParameter("Nombre"));
 							}
 						if(request.getParameter("Clave")=="") {
-							errores+="Debes introducir contrase�a"+"<br>";
+							errores+="Debes introducir contraseña"+"<br>";
 						}
 						count =count+1;
 						//REPINTADO
@@ -105,7 +105,7 @@ public class ConsultaServlet extends HttpServlet {
 		out2.println("<p style=\"color:red\"/>"+errores+"<br></p>");
 		out2.println("<label for=\"nombre\">Nombre</label> <input type=\"text\" name=\"Nombre\" /> <br/> <br/>");
 		out2.println("<label for=\"clave\">Clave</label> <input type=\"password\" name=\"Clave\" /> <br/> <br/>");
-		out2.println("<p><a href='HasOlvidado'>�Has Olvidado la contrase�a?</a></p>");
+		out2.println("<p><a href='HasOlvidado'>ñHas Olvidado la contraseña?</a></p>");
 		out2.println("<input type=\"submit\" value=\"Enviar\" name=\"enviar\" />");
 
 		out2.println("</form>\n" + "</fieldset>");
