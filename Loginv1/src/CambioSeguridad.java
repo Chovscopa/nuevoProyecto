@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import funciones.Funciones;
+
 
 @WebServlet("/CambioSeguridad")
 public class CambioSeguridad extends HttpServlet {
@@ -57,15 +59,15 @@ public class CambioSeguridad extends HttpServlet {
 				String errores="";
 				Connection conn = null;
 				Statement stmt = null;
-				conn = conexion();
+				conn = Funciones.conexion();
 				Connection conn2=null;
-				conn2=conexion();
+				conn2=Funciones.conexion();
 				
-				if (updateRegistro(conn2,usuario,request.getParameter("clavenueva"),request.getParameter("confirmarclavenueva"))) {
+				if (Funciones.updateRegistro(conn2,usuario,request.getParameter("clavenueva"),request.getParameter("confirmarclavenueva"))) {
 					
 						
 					
-						out.println("<p>Contraseña cambiada, " + usuario + "</p>");
+						out.println("<p>Contraseï¿½a cambiada, " + usuario + "</p>");
 						
 						HttpSession sesion=request.getSession();
 						
@@ -81,9 +83,9 @@ public class CambioSeguridad extends HttpServlet {
 						errores+="Debes introducir nombre"+"<br>";
 					}
 					if(request.getParameter("Clave")=="") {
-						errores+="Debes introducir contraseña"+"<br>";
+						errores+="Debes introducir contraseï¿½a"+"<br>";
 					}
-					errores+="No coinciden las contraseñas";
+					errores+="No coinciden las contraseï¿½as";
 					
 					
 					//REPINTADO
@@ -117,12 +119,12 @@ public class CambioSeguridad extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>Cambio de Contraseña Seguridad</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>Cambio de Contraseï¿½a Seguridad</legend><br/>");
 		out2.println("<form action=\"CambioSeguridad\" method=\"post\" ");
 		out2.println("<p style=\"color:red\"/>"+errores+"<br>");
 	
-		out2.println("<label for=\"clavenueva\">Contraseña nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
-		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseña nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"clavenueva\">Contraseï¿½a nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseï¿½a nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
 		out2.println("<input type=\"submit\" value=\"Enviar\" name=\"enviar\" />");
 
 		out2.println("</form>\n" + "</fieldset>");
@@ -135,11 +137,11 @@ public class CambioSeguridad extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>Cambio de Contraseña Seguridad</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>Cambio de Contraseï¿½a Seguridad</legend><br/>");
 		out2.println("<form action=\"CambioSeguridad\" method=\"post\" ");
 
-		out2.println("<label for=\"clavenueva\">Contraseña nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
-		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseña nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"clavenueva\">Contraseï¿½a nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseï¿½a nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
 		out2.println("<input type=\"submit\" value=\"Enviar\" name=\"enviar\" />");
 
 		out2.println("</form>\n" + "</fieldset>");
@@ -147,38 +149,8 @@ public class CambioSeguridad extends HttpServlet {
 		out2.println("</html>");
 	}
 
-	private Connection conexion() {
-		Connection conn = null;
-		try {
 
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-			String userName = "root";
-			String password = "";
-
-			String url = "jdbc:mysql://localhost/tienda5";
-			conn = DriverManager.getConnection(url, userName, password);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return conn;
-	}
 	
-	private boolean updateRegistro(Connection conn,String nombre,String clavenueva,String confirmarclavenueva) throws SQLException {
-		Statement stmt = null;
-		boolean sw = false;
-		stmt = conn.createStatement();
-		
-		String sqlStr = "UPDATE usuarios SET pass = '"+confirmarclavenueva+"'"+"WHERE nombre ='"+nombre+"'";
-		if(clavenueva.equals(confirmarclavenueva)) {
-			int rset = stmt.executeUpdate(sqlStr);
-			
-			sw=true;
-		}else {
-			
-		}
-		return sw;
-	}
+	
 
 }

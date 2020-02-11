@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import funciones.Funciones;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -42,8 +43,8 @@ public class HasOlvidado extends HttpServlet {
 			//////////////// FORMULARIO ///////////////
 			if (request.getParameter("enviar") == null) {
 				out.println(usuario);
-				Connection conn2 = conexion();
-				String cc=mostarPregunta(conn2, usuario);
+				Connection conn2 = Funciones.conexion();
+				String cc=Funciones.mostarPregunta(conn2, usuario);
 				formulario(out2,cc);
 
 			} else {
@@ -51,19 +52,19 @@ public class HasOlvidado extends HttpServlet {
 				String errores = "";
 				Connection conn = null;
 				Statement stmt = null;
-				conn = conexion();
+				conn = Funciones.conexion();
 				Connection conn2 = null;
-				conn2 = conexion();
-				String cc=mostarPregunta(conn2, usuario);
+				conn2 = Funciones.conexion();
+				String cc=Funciones.mostarPregunta(conn2, usuario);
 				
 
-				if (checkPregunta(conn,usuario, request.getParameter("respuesta"))) {
+				if (Funciones.checkPregunta(conn,usuario, request.getParameter("respuesta"))) {
 					out.println("<p>Respuesta acertada, " + usuario + "</p>");
 
 					//HttpSession sesion = request.getSession();
 
 					//request.getSession().getAttribute("usuario" );
-					out.println("<p><a href='CambioSeguridad'>Cambio de contraseña</a></p>");
+					out.println("<p><a href='CambioSeguridad'>Cambio de contraseï¿½a</a></p>");
 				} else {
 
 					
@@ -101,10 +102,10 @@ public class HasOlvidado extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>¿Has olvidado?</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>ï¿½Has olvidado?</legend><br/>");
 		out2.println("<form action=\"HasOlvidado\" method=\"post\" ");
 		out2.println("<p style=\"color:red\"/>"+errores+"<br>");
-		out2.println("Pregunta de seguridad: ¿"+cc+"?<br/>");
+		out2.println("Pregunta de seguridad: ï¿½"+cc+"?<br/>");
 		
 		out2.println("<label for=\"clave\">Respuesta</label> <input type=\"password\" name=\"respuesta\" />");
 
@@ -121,10 +122,10 @@ public class HasOlvidado extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>¿Has olvidado?" + "" + "</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>ï¿½Has olvidado?" + "" + "</legend><br/>");
 		out2.println("<form action=\"HasOlvidado\" method=\"post\" ");
 	
-		out2.println("Pregunta de seguridad: ¿"+cc+"?<br/>");
+		out2.println("Pregunta de seguridad: ï¿½"+cc+"?<br/>");
 
 		out2.println("<label for=\"clave\">Respuesta</label> <input type=\"password\" name=\"respuesta\" /><br/>");
 
@@ -135,70 +136,8 @@ public class HasOlvidado extends HttpServlet {
 		out2.println("</html>");
 	}
 
-	private Connection conexion() {
-		Connection conn = null;
-		try {
+	
 
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-			String userName = "root";
-			String password = "";
-
-			String url = "jdbc:mysql://localhost/tienda5";
-			conn = DriverManager.getConnection(url, userName, password);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return conn;
-	}
-
-	private boolean checkPregunta(Connection conn, String nombre, String respuesta) throws SQLException {
-		Statement stmt = null;
-		boolean sw = false;
-		stmt = conn.createStatement();
-
-		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND respuesta='" + respuesta + "'";
-
-		ResultSet rset = stmt.executeQuery(sqlStr);
-		//String cc = rset.getString("respuesta");
-		while (rset.next()) {
-			sw = true;
-
-		}
-
-		return sw;
-	}
-
-	private String mostarPregunta(Connection conn, String nombre) throws SQLException {
-		Statement stmt = null;
-		
-		stmt = conn.createStatement();
-
-		String sqlStr = "select * from usuarios where nombre='" + nombre +  "'";
-		String cc=null;
-		ResultSet rset = stmt.executeQuery(sqlStr);
-
-		while (rset.next()) {
-		 cc = (String)rset.getString("pregunta");
-			
-
-		}
-
-		return cc;
-	}
-	private boolean checkUpdateRespuesta(Connection conn, String nombre, String respuesta) throws SQLException {
-		Statement stmt = null;
-		boolean sw = false;
-		stmt = conn.createStatement();
-
-		String sqlStr = "UPDATE usuarios SET pass = '" + respuesta + "'" + "WHERE nombre ='" + nombre + "'";
-
-		int rset = stmt.executeUpdate(sqlStr);
-
-		sw = true;
-
-		return sw;
-	}
+	
 
 }

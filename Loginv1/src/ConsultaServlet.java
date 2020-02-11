@@ -3,6 +3,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import funciones.Funciones;
+
 import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
@@ -42,18 +45,18 @@ public class ConsultaServlet extends HttpServlet {
 				String errores="";
 				Connection conn = null;
 				Statement stmt = null;
-				conn = conexion();
+				conn = Funciones.conexion();
 				if(count!=3) {
 					out.println(count);
 				
-					if (checkUsuario(conn,request.getParameter("Nombre"),request.getParameter("Clave"))) {
+					if (Funciones.checkUsuario1(conn,request.getParameter("Nombre"),request.getParameter("Clave"))) {
 						
 						out.println("<p>Bienvenido " + request.getParameter("Nombre") + "</p>");
 						
 						
 						sesion.setAttribute("nombre", request.getParameter("Nombre"));
 						out.println("<p><a href='Bienvenido'>Bienvenido</a></p>");
-						out.println("<p><a href='Cambio'>Cambio de contraseña</a></p>");
+						out.println("<p><a href='Cambio'>Cambio de contraseï¿½a</a></p>");
 						
 					} else {
 						
@@ -64,7 +67,7 @@ public class ConsultaServlet extends HttpServlet {
 							sesion.setAttribute("nombre",request.getParameter("Nombre"));
 							}
 						if(request.getParameter("Clave")=="") {
-							errores+="Debes introducir contraseña"+"<br>";
+							errores+="Debes introducir contraseï¿½a"+"<br>";
 						}
 						count =count+1;
 						//REPINTADO
@@ -102,7 +105,7 @@ public class ConsultaServlet extends HttpServlet {
 		out2.println("<p style=\"color:red\"/>"+errores+"<br></p>");
 		out2.println("<label for=\"nombre\">Nombre</label> <input type=\"text\" name=\"Nombre\" /> <br/> <br/>");
 		out2.println("<label for=\"clave\">Clave</label> <input type=\"password\" name=\"Clave\" /> <br/> <br/>");
-		out2.println("<p><a href='HasOlvidado'>¿Has Olvidado la contraseña?</a></p>");
+		out2.println("<p><a href='HasOlvidado'>ï¿½Has Olvidado la contraseï¿½a?</a></p>");
 		out2.println("<input type=\"submit\" value=\"Enviar\" name=\"enviar\" />");
 
 		out2.println("</form>\n" + "</fieldset>");
@@ -127,40 +130,9 @@ public class ConsultaServlet extends HttpServlet {
 		out2.println("</html>");
 	}
 
-	private Connection conexion() {
-		Connection conn = null;
-		try {
-
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-			String userName = "root";
-			String password = "";
-
-			String url = "jdbc:mysql://localhost/tienda5";
-			conn = DriverManager.getConnection(url, userName, password);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return conn;
-	}
 	
-	private boolean checkUsuario(Connection conn,String nombre,String passss) throws SQLException {
-		Statement stmt = null;
-		boolean sw = false;
-		stmt = conn.createStatement();
-		
-		//SELECT * FROM usuarios WHERE STRCMP(usuarios.usuario, 'ovidio') = 0 AND STRCMP(usuarios.password, PASSWORD('asd')) = 0
-
-		
-		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND pass='" + passss + "'";
-		ResultSet rset = stmt.executeQuery(sqlStr);
-		while (rset.next()) {
-			sw = true;
-		}
-
-		return sw;
-	}
+	
+	
 }
 
 /*
