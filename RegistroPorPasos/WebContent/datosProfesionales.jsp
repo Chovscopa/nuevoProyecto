@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%
+    	String errores=(String )request.getSession().getAttribute("errores");
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +11,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="PasoJava3" method="post" enctype="multipart/from-data">
+	<form action="PasoJava3" method="post">
 		<fieldset><legend>DATOS PROFESIONALES</legend>
+			<p style="color:red"><%=errores %></p>
+			
 			Departamento <select name="departamento[]">
-							<option value="marqueting">Marqueting</option>
-							<option value="diseño">Diseño</option>
-							<option value="ventas">Ventas</option>
+							<option value="Marqueting">Marqueting</option>
+							<option value="Diseï¿½o">DiseÃ±o</option>
+							<option value="Ventas">Ventas</option>
 						</select>
 			<br>
 			Salario <input type="text" name="salario" /><br>

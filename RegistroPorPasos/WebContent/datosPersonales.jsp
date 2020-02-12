@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	String errores=(String) request.getSession().getAttribute("errores");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -11,6 +13,8 @@
 <body>
 	<form action="PasoJava2" method="post">
 		<fieldset><legend>DATOS PERSONALES</legend>
+		<p style="color:red"><%=errores %></p>
+		
 			Nombre<input type="text" name="user">
 			Apellidos<input type="text" name="Apellidos"><br>
 			Fecha de Nacimiento <input type="date" name="Fecha"><br>
