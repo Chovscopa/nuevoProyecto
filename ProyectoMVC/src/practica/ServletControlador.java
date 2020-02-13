@@ -29,7 +29,7 @@ public class ServletControlador extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);	// Recupera la sesion actual o crea una nueva si no existe.
-
+		response.setContentType("text/html;charset=UTF-8");
 		List<ElementoPedido> elCarrito = (ArrayList<ElementoPedido>) session.getAttribute("carrito");	// Recupera el carrito de la sesion actual
 
 		String nextPage = "";	// Determina a que pagina jsp redirigira
@@ -42,13 +42,22 @@ public class ServletControlador extends HttpServlet {
 // Mandado por order.jsp con los parámetros idLibro y cantidad.
 // crea un elementoPedido y lo añade al carrito
 			ElementoPedido nuevoElementoPedido = new ElementoPedido(Integer.parseInt(request.getParameter("idLibro")),	Integer.parseInt(request.getParameter("cantidad")));
-			if(  (Integer.parseInt(request.getParameter("idLibro"))) >= (nuevoElementoPedido.getCantidad()) ) {
-				PrintWriter out = response.getWriter();
-				out.println("no se puede");
-			}
+			
 			if (elCarrito == null) { // el carrito esta vacío
 				elCarrito = new ArrayList<>();
 				elCarrito.add(nuevoElementoPedido);
+				if(  (Integer.parseInt(request.getParameter("cantidad"))) > LibrosBD.getStock(0) ) {
+					String paginaError= "/error.jsp";
+					ServletContext servletContext = getServletContext();
+					RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
+					requestDispatcher.forward(request, response);
+				}	
+				if(  nuevoElementoPedido.getCantidad() > LibrosBD.getStock(0) ) {
+					String paginaError= "/error.jsp";
+					ServletContext servletContext = getServletContext();
+					RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
+					requestDispatcher.forward(request, response);
+				}	
 // enlaza el carrito con la sesion
 				session.setAttribute("carrito", elCarrito);
 			} else {
@@ -62,10 +71,34 @@ public class ServletControlador extends HttpServlet {
 					if (unElementoPedido.getIdLibro() == nuevoElementoPedido.getIdLibro()) {
 						unElementoPedido.setCantidad(unElementoPedido.getCantidad() + nuevoElementoPedido.getCantidad());
 						encontrado = true;
+						if(  (Integer.parseInt(request.getParameter("cantidad"))) > LibrosBD.getStock(0) ) {
+							String paginaError= "/error.jsp";
+							ServletContext servletContext = getServletContext();
+							RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
+							requestDispatcher.forward(request, response);
+						}
+						if(  nuevoElementoPedido.getCantidad() > LibrosBD.getStock(0) ) {
+							String paginaError= "/error.jsp";
+							ServletContext servletContext = getServletContext();
+							RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
+							requestDispatcher.forward(request, response);
+						}
 					}
 				}
 				if (!encontrado) { // Lo a~nade al carrito
 					elCarrito.add(nuevoElementoPedido);
+					if(  (Integer.parseInt(request.getParameter("cantidad"))) > LibrosBD.getStock(0) ) {
+						String paginaError= "/error.jsp";
+						ServletContext servletContext = getServletContext();
+						RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
+						requestDispatcher.forward(request, response);
+					}
+					if(  nuevoElementoPedido.getCantidad() > LibrosBD.getStock(0) ) {
+						String paginaError= "/error.jsp";
+						ServletContext servletContext = getServletContext();
+						RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
+						requestDispatcher.forward(request, response);
+					}
 				}
 			}///////
 			// Vuelve a order.jsp para mas pedidos

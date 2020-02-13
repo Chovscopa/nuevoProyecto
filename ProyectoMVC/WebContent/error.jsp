@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<p><h1><b>No hay stock disponible</b></h1></p>
+	<%
+		request.getSession().invalidate();
+	%>
+	<a href="order.jsp">Volver</a>
+	
 </body>
 </html>

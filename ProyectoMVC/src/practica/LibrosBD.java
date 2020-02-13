@@ -16,6 +16,7 @@ public class LibrosBD {
 	private static String[] titulos = new String[MAX_SIZE];
 	private static String[] autores = new String[MAX_SIZE];
 	private static float[] precios = new float[MAX_SIZE];
+	private static int[] stock = new int[MAX_SIZE];
 
 	public static void cargarDatos() {
 		Connection conn = null;
@@ -40,6 +41,7 @@ public class LibrosBD {
 				titulos[count] = rset.getString("titulo");
 				autores[count] = rset.getString("autor");
 				precios[count] = (float) rset.getDouble("precio");
+				stock[count]= rset.getInt("cantidad");
 				count++;
 			}
 // Cerramos el resto de recursos
@@ -70,5 +72,9 @@ public class LibrosBD {
 	/** Devuelve el precio del libro idLibro */
 	public static float getPrecio(int idLibro) {
 		return precios[idLibro];
+	}
+	
+	public static int getStock(int idLibro) {
+		return stock[idLibro];
 	}
 }
