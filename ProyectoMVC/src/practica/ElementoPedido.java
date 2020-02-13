@@ -38,4 +38,5 @@ public class ElementoPedido {
 	public float getPrecio() {
 		return LibrosBD.getPrecio(idLibro);
 	}
+	
 }

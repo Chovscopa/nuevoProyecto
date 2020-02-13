@@ -27,44 +27,47 @@ public class ServletControlador extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-// Recupera la sesion actual o crea una nueva si no existe.
-		HttpSession session = request.getSession(true);
-// Recupera el carrito de la sesion actual
-		List<ElementoPedido> elCarrito = (ArrayList<ElementoPedido>) session.getAttribute("carrito");
-// Determina a que pagina jsp redirigira
-		String nextPage = "";
+
+		HttpSession session = request.getSession(true);	// Recupera la sesion actual o crea una nueva si no existe.
+
+		List<ElementoPedido> elCarrito = (ArrayList<ElementoPedido>) session.getAttribute("carrito");	// Recupera el carrito de la sesion actual
+
+		String nextPage = "";	// Determina a que pagina jsp redirigira
 		String todo = request.getParameter("todo");
 		if (todo == null) {
-// Primer acceso - redireccion a order.jsp
-			nextPage = "/order.jsp";
-		} else if (todo.equals("add")) {
-// Mandado por order.jsp con los parametros idLibro y cantidad.
-// crea un elementoPedido y lo a~nade al carrito
-			ElementoPedido nuevoElementoPedido = new ElementoPedido(Integer.parseInt(request.getParameter("idLibro")),
-					Integer.parseInt(request.getParameter("cantidad")));
-			if (elCarrito == null) { // el carrito esta vaco
+
+			nextPage = "/order.jsp";	// Primer acceso - redireccion a order.jsp
+		} 
+		else if (todo.equals("add")) {
+// Mandado por order.jsp con los parámetros idLibro y cantidad.
+// crea un elementoPedido y lo añade al carrito
+			ElementoPedido nuevoElementoPedido = new ElementoPedido(Integer.parseInt(request.getParameter("idLibro")),	Integer.parseInt(request.getParameter("cantidad")));
+			if(  (Integer.parseInt(request.getParameter("idLibro"))) >= (nuevoElementoPedido.getCantidad()) ) {
+				PrintWriter out = response.getWriter();
+				out.println("no se puede");
+			}
+			if (elCarrito == null) { // el carrito esta vacío
 				elCarrito = new ArrayList<>();
 				elCarrito.add(nuevoElementoPedido);
 // enlaza el carrito con la sesion
 				session.setAttribute("carrito", elCarrito);
 			} else {
 // Comprueba si el libro esta en el carrito
-// si lo esta actualiza la cantidad
-// si no lo a~nade
+// si lo está actualiza la cantidad
+// si no lo añade
 				boolean encontrado = false;
 				Iterator iter = elCarrito.iterator();
 				while (!encontrado && iter.hasNext()) {
 					ElementoPedido unElementoPedido = (ElementoPedido) iter.next();
 					if (unElementoPedido.getIdLibro() == nuevoElementoPedido.getIdLibro()) {
-						unElementoPedido
-								.setCantidad(unElementoPedido.getCantidad() + nuevoElementoPedido.getCantidad());
+						unElementoPedido.setCantidad(unElementoPedido.getCantidad() + nuevoElementoPedido.getCantidad());
 						encontrado = true;
 					}
 				}
 				if (!encontrado) { // Lo a~nade al carrito
 					elCarrito.add(nuevoElementoPedido);
 				}
-			}
+			}///////
 			// Vuelve a order.jsp para mas pedidos
 			nextPage = "/order.jsp";
 		} else if (todo.equals("remove")) {
@@ -83,7 +86,7 @@ public class ServletControlador extends HttpServlet {
 				float precio = item.getPrecio();
 				int cantidadOrdenada = item.getCantidad();
 				precioTotal += precio * cantidadOrdenada;
-				cantidadTotalOrdenada += cantidadOrdenada;
+				cantidadTotalOrdenada += cantidadOrdenada; //
 			}
 			// Formatea el precio con dos decimales
 			StringBuilder sb = new StringBuilder();
