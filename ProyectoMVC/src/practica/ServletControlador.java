@@ -77,7 +77,7 @@ public class ServletControlador extends HttpServlet {
 							RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
 							requestDispatcher.forward(request, response);
 						}
-						if(  nuevoElementoPedido.getCantidad() > LibrosBD.getStock(0) ) {
+						if(  unElementoPedido.getCantidad() > LibrosBD.getStock(0) ) {
 							String paginaError= "/error.jsp";
 							ServletContext servletContext = getServletContext();
 							RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(paginaError);
