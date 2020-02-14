@@ -25,8 +25,7 @@ public class ServletControlador extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);	// Recupera la sesion actual o crea una nueva si no existe.
 		response.setContentType("text/html;charset=UTF-8");
@@ -36,7 +35,7 @@ public class ServletControlador extends HttpServlet {
 		String todo = request.getParameter("todo");
 		if (todo == null) {
 
-			nextPage = "/order.jsp";	// Primer acceso - redireccion a order.jsp
+			nextPage = "/order.jsp";	// Primer acceso - redireccion a order.jsp1
 		} 
 		else if (todo.equals("add")) {
 // Mandado por order.jsp con los parámetros idLibro y cantidad.

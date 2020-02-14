@@ -53,6 +53,31 @@ public class LibrosBD {
 			ex.printStackTrace();
 		}
 	}
+	
+	public static void updateTabla() {
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+			String userName = "root";
+			String password = "";
+			String url = "jdbc:mysql://localhost/tiendalibros";
+			conn = DriverManager.getConnection(url, userName, password);
+			stmt = conn.createStatement();
+			String sqlStr = "select * from libros;";
+			ResultSet rset = stmt.executeQuery(sqlStr);
+			int count = 0;
+			
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	/** Devuelve el numero de libros */
 	public static int tamanyo() {
