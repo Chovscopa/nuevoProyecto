@@ -54,8 +54,7 @@
 		%>
 		<tr>
 			<form name="borrarForm" action="shopping" method="POST">
-				<input type="hidden" name="todo" value="remove"> <input
-					type="hidden" name="indiceElemento" value="<%=i%>">
+				<input type="hidden" name="todo" value="remove"> <input	type="hidden" name="indiceElemento" value="<%=i%>">
 				<td><%=elementoPedido.getTitulo()%></td>
 				<td><%=elementoPedido.getAutor()%></td>
 				<td align="right"><%=elementoPedido.getPrecio()%></td>
