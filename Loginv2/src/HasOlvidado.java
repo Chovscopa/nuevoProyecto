@@ -43,15 +43,15 @@ public class HasOlvidado extends HttpServlet {
 			//////////////// FORMULARIO ///////////////
 			if (request.getParameter("enviar") == null) {
 				out.println(usuario);
-				Connection conn2 = Funciones.conexion();
-				String cc=Funciones.mostarPregunta(conn2, usuario);
-				formulario(out2,cc);
+				Connection conn = null;
+				conn = Funciones.conexion();
+				String cc=Funciones.mostarPregunta(conn, usuario);
+				formulario(out,cc);
 
 			} else {
 
 				String errores = "";
 				Connection conn = null;
-				Statement stmt = null;
 				conn = Funciones.conexion();
 				Connection conn2 = null;
 				conn2 = Funciones.conexion();
@@ -61,10 +61,8 @@ public class HasOlvidado extends HttpServlet {
 				if (Funciones.checkPregunta(conn,usuario, request.getParameter("respuesta"))) {
 					out.println("<p>Respuesta acertada, " + usuario + "</p>");
 
-					//HttpSession sesion = request.getSession();
-
-					//request.getSession().getAttribute("usuario" );
 					out.println("<p><a href='CambioSeguridad'>Cambio de contraseña</a></p>");
+					
 				} else {
 
 					
@@ -72,7 +70,7 @@ public class HasOlvidado extends HttpServlet {
 						errores += "Debes introducir respuesta" + "<br>";
 					}
 
-					// REPINTADO
+					// REPINTADO //
 					repintado(out, errores,cc);
 
 					try {
@@ -105,7 +103,7 @@ public class HasOlvidado extends HttpServlet {
 		out2.println("<fieldset>\n" + "<legend>¿Has olvidado?</legend><br/>");
 		out2.println("<form action=\"HasOlvidado\" method=\"post\" ");
 		out2.println("<p style=\"color:red\"/>"+errores+"<br>");
-		out2.println("Pregunta de seguridad: ñ"+cc+"?<br/>");
+		out2.println("Pregunta de seguridad: "+cc+"?<br/>");
 		
 		out2.println("<label for=\"clave\">Respuesta</label> <input type=\"password\" name=\"respuesta\" />");
 
@@ -125,7 +123,7 @@ public class HasOlvidado extends HttpServlet {
 		out2.println("<fieldset>\n" + "<legend>¿Has olvidado?" + "" + "</legend><br/>");
 		out2.println("<form action=\"HasOlvidado\" method=\"post\" ");
 	
-		out2.println("Pregunta de seguridad: ?"+cc+"?<br/>");
+		out2.println("<p>Pregunta de seguridad: "+cc+"</p><br/>");
 
 		out2.println("<label for=\"clave\">Respuesta</label> <input type=\"password\" name=\"respuesta\" /><br/>");
 

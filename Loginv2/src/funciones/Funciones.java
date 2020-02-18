@@ -25,8 +25,8 @@ public class Funciones {
 		}
 		return conn;
 	}
-	
-	public static boolean checkUsuario(Connection conn,String nombre,String passss) throws SQLException {
+
+	public static boolean checkUsuario(Connection conn, String nombre, String passss) throws SQLException {
 		Statement stmt = null;
 		boolean sw = false;
 		stmt = conn.createStatement();
@@ -39,7 +39,7 @@ public class Funciones {
 
 		return sw;
 	}
-	
+
 	public static boolean checkPregunta(Connection conn, String nombre, String respuesta) throws SQLException {
 		Statement stmt = null;
 		boolean sw = false;
@@ -48,7 +48,7 @@ public class Funciones {
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND respuesta='" + respuesta + "'";
 
 		ResultSet rset = stmt.executeQuery(sqlStr);
-		//String cc = rset.getString("respuesta");
+		// String cc = rset.getString("respuesta");
 		while (rset.next()) {
 			sw = true;
 
@@ -59,21 +59,21 @@ public class Funciones {
 
 	public static String mostarPregunta(Connection conn, String nombre) throws SQLException {
 		Statement stmt = null;
-		
+
 		stmt = conn.createStatement();
 
-		String sqlStr = "select * from usuarios where nombre='" + nombre +  "'";
-		String cc=null;
+		String sqlStr = "select * from usuarios where nombre='" + nombre + "'";
+		String cc = null;
 		ResultSet rset = stmt.executeQuery(sqlStr);
 
 		while (rset.next()) {
-		 cc = (String)rset.getString("pregunta");
-			
+			cc = (String) rset.getString("pregunta");
 
 		}
 
 		return cc;
 	}
+
 	public static boolean checkUpdateRespuesta(Connection conn, String nombre, String respuesta) throws SQLException {
 		Statement stmt = null;
 		boolean sw = false;
@@ -87,30 +87,32 @@ public class Funciones {
 
 		return sw;
 	}
-	
-	public static boolean updateRegistro(Connection conn,String nombre,String clavenueva,String confirmarclavenueva) throws SQLException {
+
+	public static boolean updateRegistro(Connection conn, String nombre, String clavenueva, String confirmarclavenueva)
+			throws SQLException {
 		Statement stmt = null;
 		boolean sw = false;
 		stmt = conn.createStatement();
-		
-		String sqlStr = "UPDATE usuarios SET pass = '"+confirmarclavenueva+"'"+"WHERE nombre ='"+nombre+"'";
-		if(clavenueva.equals(confirmarclavenueva)) {
+
+		String sqlStr = "UPDATE usuarios SET pass = '" + confirmarclavenueva + "'" + "WHERE nombre ='" + nombre + "'";
+		if (clavenueva.equals(confirmarclavenueva)) {
 			int rset = stmt.executeUpdate(sqlStr);
-			
-			sw=true;
-		}else {
-			
+
+			sw = true;
+		} else {
+
 		}
 		return sw;
 	}
-	public static boolean checkUsuario1(Connection conn,String nombre,String passss) throws SQLException {
+
+	public static boolean checkUsuario1(Connection conn, String nombre, String passss) throws SQLException {
 		Statement stmt = null;
 		boolean sw = false;
 		stmt = conn.createStatement();
-		
-		//SELECT * FROM usuarios WHERE STRCMP(usuarios.usuario, 'ovidio') = 0 AND STRCMP(usuarios.password, PASSWORD('asd')) = 0
 
-		
+		// SELECT * FROM usuarios WHERE STRCMP(usuarios.usuario, 'ovidio') = 0 AND
+		// STRCMP(usuarios.password, PASSWORD('asd')) = 0
+
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND pass='" + passss + "'";
 		ResultSet rset = stmt.executeQuery(sqlStr);
 		while (rset.next()) {
@@ -119,20 +121,22 @@ public class Funciones {
 
 		return sw;
 	}
-	
-	public static boolean checkUsuario2(PrintWriter out,Connection conn,String nombre,String passss,String clavenueva,String confirmarclavenueva) throws SQLException {
+
+	public static boolean checkUsuario2(PrintWriter out, Connection conn, String nombre, String passss,
+			String clavenueva, String confirmarclavenueva) throws SQLException {
 		Statement stmt = null;
 		boolean sw = false;
 		stmt = conn.createStatement();
-		
+
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND pass='" + passss + "'";
-		
+
 		ResultSet rset = stmt.executeQuery(sqlStr);
 		while (rset.next()) {
-			sw=true;
-			//out.println("<p>" + rset.getString("Nombre") + ", " + rset.getString("titulo") + ", "+ rset.getDouble("precio") + "</p>");			
+			sw = true;
+			// out.println("<p>" + rset.getString("Nombre") + ", " +
+			// rset.getString("titulo") + ", "+ rset.getDouble("precio") + "</p>");
 		}
-		
+
 		return sw;
 	}
 }

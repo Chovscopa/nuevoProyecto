@@ -1,4 +1,3 @@
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +22,7 @@ public class ConsultaServlet extends HttpServlet {
 		embudo(request, response);
 	}
 
+	
 	public void embudo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
@@ -33,21 +33,25 @@ public class ConsultaServlet extends HttpServlet {
 		
 
 		PrintWriter out2 = response.getWriter();
+		int count=0;
+		request.getSession().setAttribute("contador", count);
+		int contador=(int) request.getSession().getAttribute("contador");
 		
 		try {
+			
 			//////////////// FORMULARIO ///////////////
 			if (request.getParameter("enviar") == null) {
 				
 				formulario(out2);
 				
 			} else {
-				int count=0;
+				
 				String errores="";
 				Connection conn = null;
 				Statement stmt = null;
 				conn = Funciones.conexion();
-				if(count!=3) {
-					out.println(count);
+				if(contador!=3) {
+					out.println(contador);
 				
 					if (Funciones.checkUsuario1(conn,request.getParameter("Nombre"),request.getParameter("Clave"))) {
 						
@@ -56,7 +60,7 @@ public class ConsultaServlet extends HttpServlet {
 						
 						sesion.setAttribute("nombre", request.getParameter("Nombre"));
 						out.println("<p><a href='Bienvenido'>Bienvenido</a></p>");
-						out.println("<p><a href='Cambio'>Cambio de contraseña</a></p>");
+						
 						
 					} else {
 						
@@ -69,9 +73,11 @@ public class ConsultaServlet extends HttpServlet {
 						if(request.getParameter("Clave")=="") {
 							errores+="Debes introducir contraseña"+"<br>";
 						}
-						count =count+1;
+						contador =contador+1;
 						//REPINTADO
 						repintado(out,errores);
+						
+						out.println(contador);//////////////////////////////////
 					
 						try {
 		
@@ -83,6 +89,10 @@ public class ConsultaServlet extends HttpServlet {
 							ex.printStackTrace();
 						}
 					}
+				}
+				else {
+					RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Cambio");
+					dispatcher.forward(request, response);
 				}
 			}
 		} catch (Exception ex) {
@@ -136,8 +146,7 @@ public class ConsultaServlet extends HttpServlet {
 	
 }
 
-/*
- * 
+/* 
  * create database tienda5 CREATE TABLE usuarios( nombre VARCHAR(20) NOT NULL
  * PRIMARY KEY UNIQUE, pass VARCHAR(200) NOT NULL, pregunta VARCHAR(200),
  * respuesta VARCHAR(200)); INSERT INTO usuarios VALUES('Ovidio','1234','Nombre

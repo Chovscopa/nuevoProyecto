@@ -34,7 +34,7 @@
 	<%
 		// Scriptlet 2: Chequea si la cesta esta vacia.
 		List<ElementoPedido> cesta = (List<ElementoPedido>) session.getAttribute("carrito");
-		if (cesta != null && cesta.size() > 0) {
+		if (cesta != null && cesta.size() > 0) { //si no esta vacia
 	%>
 	<p>
 		<strong>Tu cesta contiene:</strong>

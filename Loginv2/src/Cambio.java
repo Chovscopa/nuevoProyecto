@@ -54,7 +54,7 @@ public class Cambio extends HttpServlet {
 			if (request.getParameter("enviar") == null) {
 				out.println(usuario);
 				formulario(out2);
-				
+				//*******************************aqui la recuperacion de la pregunta**********************************//
 			} else {
 				
 				String errores="";
@@ -137,7 +137,7 @@ public class Cambio extends HttpServlet {
 		out2.println("</body>");
 		out2.println("</html>");
 	}
-	private void formulario(PrintWriter out2) {
+	private void formulario(PrintWriter out2) {//*****************************meter aqui el metodo de la pregunta de seguridad****************************//
 		out2.println("<html>");
 		out2.println("<head>");
 		out2.println("<meta charset=\"UTF-8\">");
