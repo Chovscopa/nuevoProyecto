@@ -33,10 +33,9 @@ public class Funciones {
 
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND pass='" + passss + "'";
 		ResultSet rset = stmt.executeQuery(sqlStr);
-		while (rset.next()) {
-			sw = true;
-		}
-
+	
+		sw = rset.next();
+		
 		return sw;
 	}
 
@@ -48,11 +47,8 @@ public class Funciones {
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND respuesta='" + respuesta + "'";
 
 		ResultSet rset = stmt.executeQuery(sqlStr);
-		
-		while (rset.next()) {
-			sw = true;
-
-		}
+			
+		sw = rset.next();
 
 		return sw;
 	}
@@ -66,30 +62,15 @@ public class Funciones {
 		String cc = null;
 		ResultSet rset = stmt.executeQuery(sqlStr);
 
-		while (rset.next()) {
+		if(rset.next()) {
 			cc = (String) rset.getString("pregunta");
-
 		}
 
 		return cc;
 	}
 
-	public static boolean checkUpdateRespuesta(Connection conn, String nombre, String respuesta) throws SQLException {
-		Statement stmt = null;
-		boolean sw = false;
-		stmt = conn.createStatement();
-
-		String sqlStr = "UPDATE usuarios SET pass = '" + respuesta + "'" + "WHERE nombre ='" + nombre + "'";
-
-		int rset = stmt.executeUpdate(sqlStr);
-
-		sw = true;
-
-		return sw;
-	}
-
-	public static boolean updateRegistro(Connection conn, String nombre, String clavenueva, String confirmarclavenueva)
-			throws SQLException {
+	
+	public static boolean updateRegistro(Connection conn, String nombre, String clavenueva, String confirmarclavenueva)	throws SQLException {
 		Statement stmt = null;
 		boolean sw = false;
 		stmt = conn.createStatement();
@@ -111,9 +92,8 @@ public class Funciones {
 
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND pass='" + passss + "'";
 		ResultSet rset = stmt.executeQuery(sqlStr);
-		while (rset.next()) {
-			sw = true;
-		}
+		
+		sw = rset.next();
 
 		return sw;
 	}
@@ -127,12 +107,37 @@ public class Funciones {
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND pass='" + passss + "'";
 
 		ResultSet rset = stmt.executeQuery(sqlStr);
-		while (rset.next()) {
-			sw = true;
-			// out.println("<p>" + rset.getString("Nombre") + ", " +
-			// rset.getString("titulo") + ", "+ rset.getDouble("precio") + "</p>");
-		}
+		
+		sw = rset.next();
 
 		return sw;
 	}
 }
+/*public static String mostarPregunta(Connection conn, String nombre) throws SQLException {
+		Statement stmt = null;
+
+		try
+		{
+		stmt = conn.createStatement();
+
+		String sqlStr = "select * from usuarios where nombre='" + nombre + "'";
+		String cc = null;
+		ResultSet rset = stmt.executeQuery(sqlStr);
+
+		while (rset.next()) {
+			cc = (String) rset.getString("pregunta");
+
+		}
+		}catch(SQLException e) {e.printStackTrace();}
+		finally
+		{
+			try
+			{
+				if(stmt!=null) {stmt.close();}
+				if(conn!=null) {conn.close();}
+			}catch(SQLException e) {e.printStackTrace();}
+		}
+
+		return cc;
+	}
+	*/
