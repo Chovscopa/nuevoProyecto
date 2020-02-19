@@ -27,15 +27,13 @@ public class ConsultaServlet extends HttpServlet {
 		
 
 		HttpSession sesion=request.getSession();
+		
 		response.setContentType("text/html");
 
 		PrintWriter out = response.getWriter();
 		
-
 		PrintWriter out2 = response.getWriter();
-		int count=0;
-		request.getSession().setAttribute("contador", count);
-		int contador=(int) request.getSession().getAttribute("contador");
+	
 		
 		try {
 			
@@ -46,6 +44,11 @@ public class ConsultaServlet extends HttpServlet {
 				
 			} else {
 				
+				int contador=0;
+				/*
+				request.getSession().setAttribute(request.getParameter("Nombre"), count);
+				int contador=(int) request.getSession().getAttribute("contador");
+				*/
 				String errores="";
 				Connection conn = null;
 				Statement stmt = null;
@@ -69,11 +72,11 @@ public class ConsultaServlet extends HttpServlet {
 						}
 						else {
 							sesion.setAttribute("nombre",request.getParameter("Nombre"));
-							}
+						}
 						if(request.getParameter("Clave")=="") {
 							errores+="Debes introducir contraseña"+"<br>";
 						}
-						contador =contador+1;
+						contador++;
 						//REPINTADO
 						repintado(out,errores);
 						

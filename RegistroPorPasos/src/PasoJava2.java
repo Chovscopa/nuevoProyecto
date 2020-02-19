@@ -46,6 +46,7 @@ public class PasoJava2 extends HttpServlet {
 		request.getSession().setAttribute("user", nombre);   //session.setAttribute("user", usuario);
 		request.getSession().setAttribute("Apellidos", apellido);
 		request.getSession().setAttribute("Fecha", fecha);
+		request.getSession().setAttribute("errores", errores);
 		
 		
 		

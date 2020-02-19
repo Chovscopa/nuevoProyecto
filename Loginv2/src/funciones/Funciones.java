@@ -48,7 +48,7 @@ public class Funciones {
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND respuesta='" + respuesta + "'";
 
 		ResultSet rset = stmt.executeQuery(sqlStr);
-		// String cc = rset.getString("respuesta");
+		
 		while (rset.next()) {
 			sw = true;
 
@@ -99,8 +99,6 @@ public class Funciones {
 			int rset = stmt.executeUpdate(sqlStr);
 
 			sw = true;
-		} else {
-
 		}
 		return sw;
 	}
@@ -110,8 +108,6 @@ public class Funciones {
 		boolean sw = false;
 		stmt = conn.createStatement();
 
-		// SELECT * FROM usuarios WHERE STRCMP(usuarios.usuario, 'ovidio') = 0 AND
-		// STRCMP(usuarios.password, PASSWORD('asd')) = 0
 
 		String sqlStr = "select * from usuarios where nombre='" + nombre + "'" + "AND pass='" + passss + "'";
 		ResultSet rset = stmt.executeQuery(sqlStr);
