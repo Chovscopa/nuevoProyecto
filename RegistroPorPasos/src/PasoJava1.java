@@ -31,8 +31,7 @@ public class PasoJava1 extends HttpServlet {
 	}
 	
 	protected void embudo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+				
 		if (request.getSession()== null) {
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/datosPersonales.jsp");
 			dispatcher.forward(request, response);
@@ -46,11 +45,7 @@ public class PasoJava1 extends HttpServlet {
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/datosPersonales.jsp");
 			dispatcher.forward(request, response);
 		}
-		
-			
-		
-		
-		
+
 	}
 
 }

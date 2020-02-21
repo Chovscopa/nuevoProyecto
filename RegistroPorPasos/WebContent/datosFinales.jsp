@@ -8,6 +8,7 @@ String departamento=(String) request.getSession().getAttribute("departamento[]")
 String salario=(String) request.getSession().getAttribute("salario");
 String comentarios=(String) request.getSession().getAttribute("comentarios");
 String cuenta=(String) request.getSession().getAttribute("cuenta");
+
 %>
 <!DOCTYPE html>
 <html>

@@ -3,7 +3,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +29,6 @@ public class PasoJava4 extends HttpServlet {
 		try {
 			embudo(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -39,7 +37,6 @@ public class PasoJava4 extends HttpServlet {
 		try {
 			embudo(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -78,7 +75,7 @@ public class PasoJava4 extends HttpServlet {
 			Funciones.insertarRegistro(conn, usuario, apellido, fecha, departamento, salario, comentarios, cuenta2);
 			
 		}
-							
+				
 	}
 	
 	

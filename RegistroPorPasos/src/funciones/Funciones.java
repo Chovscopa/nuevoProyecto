@@ -28,11 +28,11 @@ public class Funciones {
 	
 	public static void insertarRegistro(Connection conn,String usuario, String apellido, String fecha, String departamento, String salario, String comentarios, String cuenta2) throws SQLException{
 		Statement stmt = null;
-		//boolean sw = false;
+		
 		stmt = conn.createStatement();
-		//INSERT INTO usuarios VALUES(usuario,apellido,fecha,departamento,salario,cuenta);
+		
 		String sqlStr = "INSERT INTO usuarios VALUES('" + usuario + "',"+ "'" + apellido + "',"+ "'" + fecha + "',"+ "'" +departamento+ "',"+ "'" +salario+ "',"+ "'" +comentarios+ "',"+ "'" +cuenta2+ "')";
-		//String sqlStr = "INSERT INTO usuarios VALUES(" + usuario + ","+  apellido+  ","+  fecha + ","+ departamento+ ","+  salario+ ","+ comentarios+ ","+ cuenta2+ ")";
+		
 		stmt.executeUpdate(sqlStr);
 		
 		
