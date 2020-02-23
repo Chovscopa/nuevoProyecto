@@ -10,4 +10,5 @@ create table usuarios(
 	genero VARCHAR(200),
 	nacionalidad VARCHAR(200)
 );
+DELETE FROM usuarios WHERE usuario = 'OvidioLeila';
 INSERT INTO usuarios VALUES(usuario,apellido,fecha,departamento,salario,cuenta);
