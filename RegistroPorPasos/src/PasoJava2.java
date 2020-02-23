@@ -40,6 +40,9 @@ public class PasoJava2 extends HttpServlet {
 		String apellido=request.getParameter("Apellidos");
 		String fecha=request.getParameter("Fecha");
 		
+		String genero=request.getParameter("genero");
+		String[] pai=request.getParameterValues("paises[]");
+		
 		String errores="";
 		
 		//asignacion de los campos del formalario a variables de sesion
@@ -47,6 +50,9 @@ public class PasoJava2 extends HttpServlet {
 		request.getSession().setAttribute("Apellidos", apellido);
 		request.getSession().setAttribute("Fecha", fecha);
 		request.getSession().setAttribute("errores", errores);
+		
+		request.getSession().setAttribute("genero", genero);
+		request.getSession().setAttribute("paises[]", pai);
 		
 		
 		

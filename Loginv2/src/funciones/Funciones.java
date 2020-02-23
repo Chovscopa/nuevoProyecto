@@ -15,9 +15,9 @@ public class Funciones {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 			String userName = "root";
-			String password = "";
+			String password = "admin";
 
-			String url = "jdbc:mysql://localhost/tienda5";
+			String url = "jdbc:mysql://localhost/tienda4";
 			conn = DriverManager.getConnection(url, userName, password);
 
 		} catch (Exception ex) {

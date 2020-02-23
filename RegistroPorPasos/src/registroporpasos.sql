@@ -6,6 +6,8 @@ create table usuarios(
 	departamento VARCHAR(200),
 	salario VARCHAR(200),
 	comentarios VARCHAR(200),
-	cuenta VARCHAR(200)
+	cuenta VARCHAR(200),
+	genero VARCHAR(200),
+	nacionalidad VARCHAR(200)
 );
 INSERT INTO usuarios VALUES(usuario,apellido,fecha,departamento,salario,cuenta);

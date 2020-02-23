@@ -15,7 +15,7 @@ public class Funciones {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 			String userName = "root";
-			String password = "";
+			String password = "admin";
 
 			String url = "jdbc:mysql://localhost/registro_pasos";
 			conn = DriverManager.getConnection(url, userName, password);
@@ -26,12 +26,12 @@ public class Funciones {
 		return conn;
 	}
 	
-	public static void insertarRegistro(Connection conn,String usuario, String apellido, String fecha, String departamento, String salario, String comentarios, String cuenta2) throws SQLException{
+	public static void insertarRegistro(Connection conn,String usuario, String apellido, String fecha, String departamento, String salario, String comentarios, String cuenta2, String genero, String exo) throws SQLException{
 		Statement stmt = null;
 		
 		stmt = conn.createStatement();
 		
-		String sqlStr = "INSERT INTO usuarios VALUES('" + usuario + "',"+ "'" + apellido + "',"+ "'" + fecha + "',"+ "'" +departamento+ "',"+ "'" +salario+ "',"+ "'" +comentarios+ "',"+ "'" +cuenta2+ "')";
+		String sqlStr = "INSERT INTO usuarios VALUES('" + usuario + "',"+ "'" + apellido + "',"+ "'" + fecha + "',"+ "'" +departamento+ "',"+ "'" +salario+ "',"+ "'" +comentarios+ "',"+ "'" +cuenta2+ "',"+ "'" +genero+ "',"+ "'" +exo+ "')";
 		
 		stmt.executeUpdate(sqlStr);
 		

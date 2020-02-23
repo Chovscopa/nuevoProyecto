@@ -9,6 +9,13 @@ String salario=(String) request.getSession().getAttribute("salario");
 String comentarios=(String) request.getSession().getAttribute("comentarios");
 String cuenta=(String) request.getSession().getAttribute("cuenta");
 
+String sex = (String) request.getSession().getAttribute("genero");
+
+String[] pai = (String[]) request.getSession().getAttribute("paises[]");
+String exo="";
+for(int i=0;i<pai.length;i++){
+	exo+=pai[i]+" ";
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -23,6 +30,8 @@ String cuenta=(String) request.getSession().getAttribute("cuenta");
 			<p>Nombre: <b><%=usuario %></b></p>	
 			<p>Apellidos: <b><%=apellido %></b></p>
 			<p>Fecha: <b><%=fecha %></b></p>
+			<p>Genero: <b><%=sex %></b></p>
+			<p>Nacionalidad: <b><%= exo%></b></p>
 	</fieldset>
 	
 	<fieldset>

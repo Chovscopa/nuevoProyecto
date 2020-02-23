@@ -60,6 +60,14 @@ public class PasoJava4 extends HttpServlet {
 		String comentarios=(String) request.getSession().getAttribute("comentarios");
 		String cuenta2=(String) request.getSession().getAttribute("cuenta");
 		
+		String sex = (String) request.getSession().getAttribute("genero");
+		
+		String[] pai = (String[]) request.getSession().getAttribute("paises[]");
+		String exo="";
+		for(int i=0;i<pai.length;i++){
+			exo+=pai[i]+" ";
+		}
+		
 		String errores="";
 		
 		if(fallos(cuenta,errores,request)) {
@@ -72,7 +80,7 @@ public class PasoJava4 extends HttpServlet {
 			
 			Connection conn = null;
 			conn = Funciones.conexion();
-			Funciones.insertarRegistro(conn, usuario, apellido, fecha, departamento, salario, comentarios, cuenta2);
+			Funciones.insertarRegistro(conn, usuario, apellido, fecha, departamento, salario, comentarios, cuenta2, sex, exo);
 			
 		}
 				

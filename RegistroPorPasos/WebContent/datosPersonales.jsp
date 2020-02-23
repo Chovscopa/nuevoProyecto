@@ -1,3 +1,5 @@
+<%@page import="generacionDinamica.generacionDinamica"%>
+<%@page import="funciones.Funciones"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -17,6 +19,15 @@
 	if(fecha==null){
 		fecha="";
 	}
+	
+	String sex = (String) request.getSession().getAttribute("genero");
+	
+	String[] pai = (String[]) request.getSession().getAttribute("paises[]");
+	
+	generacionDinamica.arrayPaises.put("ES", "Española");
+	generacionDinamica.arrayPaises.put("FR", "Francesa");
+	generacionDinamica.arrayPaises.put("IT", "Italiana");
+	generacionDinamica.arrayPaises.put("PT", "Portuguesa");
 %>
 
 <!DOCTYPE html>
@@ -33,6 +44,10 @@
 			Nombre<input type="text" name="user" value="<%= usuario %>">
 			Apellidos<input type="text" name="Apellidos" value="<%= apellido %>"><br>
 			Fecha de Nacimiento <input type="date" name="Fecha" value="<%= fecha %>"><br>
+			
+			<%=generacionDinamica.generarButton(sex) %><br>
+			<%=generacionDinamica.generaSelectPaises(generacionDinamica.arrayPaises,pai) %><br>
+			
 		
 			<input type="submit" name="enviar" value="Grabar informacion e ir al paso 2 - Datos profesionales">
 		</fieldset>

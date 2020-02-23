@@ -61,7 +61,7 @@ public class HasOlvidado extends HttpServlet {
 				if (Funciones.checkPregunta(conn,usuario, request.getParameter("respuesta"))) {
 					out.println("<p>Respuesta acertada, " + usuario + "</p>");
 
-					out.println("<p><a href='CambioSeguridad'>Cambio de contraseña</a></p>");
+					out.println("<p><a href='CambioSeguridad'>Cambio de contraseï¿½a</a></p>");
 					
 				} else {
 
@@ -100,7 +100,7 @@ public class HasOlvidado extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>¿Has olvidado?</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>Has olvidado?</legend><br/>");
 		out2.println("<form action=\"HasOlvidado\" method=\"post\" ");
 		out2.println("<p style=\"color:red\"/>"+errores+"<br>");
 		out2.println("Pregunta de seguridad: "+cc+"?<br/>");
@@ -120,7 +120,7 @@ public class HasOlvidado extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>¿Has olvidado?" + "" + "</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>Has olvidado?" + "" + "</legend><br/>");
 		out2.println("<form action=\"HasOlvidado\" method=\"post\" ");
 	
 		out2.println("<p>Pregunta de seguridad: "+cc+"</p><br/>");

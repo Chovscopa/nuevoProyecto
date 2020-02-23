@@ -42,10 +42,12 @@ public class PasoJava1 extends HttpServlet {
 			request.getSession().getAttribute("fecha");
 			
 			
+			
+			
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/datosPersonales.jsp");
 			dispatcher.forward(request, response);
 		}
-
+		
 	}
 
 }
