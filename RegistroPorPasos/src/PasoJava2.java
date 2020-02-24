@@ -36,12 +36,14 @@ public class PasoJava2 extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		//captar los valores de los campos del fomulario
-		String nombre=request.getParameter("user");	//faltan todo el resto de paramentros
+		String nombre=request.getParameter("user");	
 		String apellido=request.getParameter("Apellidos");
 		String fecha=request.getParameter("Fecha");
 		
 		String genero=request.getParameter("genero");
 		String[] pai=request.getParameterValues("paises[]");
+		String cop=request.getParameter("casadoOpareja");
+		String h=request.getParameter("hijo");
 		
 		String errores="";
 		
@@ -53,6 +55,9 @@ public class PasoJava2 extends HttpServlet {
 		
 		request.getSession().setAttribute("genero", genero);
 		request.getSession().setAttribute("paises[]", pai);
+		
+		request.getSession().setAttribute("casadoOpareja", cop);
+		request.getSession().setAttribute("hijo", h);
 		
 		
 		

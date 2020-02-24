@@ -1,3 +1,4 @@
+<%@page import="generacionDinamica.generacionDinamica"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%
@@ -16,6 +17,13 @@ String exo="";
 for(int i=0;i<pai.length;i++){
 	exo+=pai[i]+" ";
 }
+
+String cop= (String) request.getSession().getAttribute("casadoOpareja");
+String copLimpio=generacionDinamica.limpiarNull1(cop);
+String hij = (String) request.getSession().getAttribute("hijo");
+String hijLimpio=generacionDinamica.limpiarNull1(hij);
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -32,6 +40,9 @@ for(int i=0;i<pai.length;i++){
 			<p>Fecha: <b><%=fecha %></b></p>
 			<p>Genero: <b><%=sex %></b></p>
 			<p>Nacionalidad: <b><%= exo%></b></p>
+			<p>¿Casado o pareja de hecho? <b><%= copLimpio%></b></p>
+			<p>¿Hijos? <b><%= hijLimpio%></b></p>
+			
 	</fieldset>
 	
 	<fieldset>

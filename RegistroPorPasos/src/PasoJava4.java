@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import funciones.Funciones;
+import generacionDinamica.generacionDinamica;
 
 
 @WebServlet("/PasoJava4")
@@ -68,6 +69,12 @@ public class PasoJava4 extends HttpServlet {
 			exo+=pai[i]+" ";
 		}
 		
+		String cos = (String) request.getSession().getAttribute("casadoOpareja");
+		String copLimpio=generacionDinamica.limpiarNull1(cos);
+		
+		String hij = (String) request.getSession().getAttribute("hijo");
+		String hijLimpio=generacionDinamica.limpiarNull1(hij);
+		
 		String errores="";
 		
 		if(fallos(cuenta,errores,request)) {
@@ -80,7 +87,7 @@ public class PasoJava4 extends HttpServlet {
 			
 			Connection conn = null;
 			conn = Funciones.conexion();
-			Funciones.insertarRegistro(conn, usuario, apellido, fecha, departamento, salario, comentarios, cuenta2, sex, exo);
+			Funciones.insertarRegistro(conn, usuario, apellido, fecha, departamento, salario, comentarios, cuenta2, sex, exo, copLimpio, hijLimpio);
 			
 		}
 				

@@ -22,11 +22,6 @@ public class generacionDinamica {
 		return cadena;
 	}
 	
-	public static LinkedHashMap<String,String> arrayPaises = new LinkedHashMap<String, String>();
-	
-	
-    
-	
 	public static String generaSelectPaises (LinkedHashMap<String, String> arrayPaises,  String[] _paises) {
         String cadena = "Nacionalidad:  <select name=\"paises[]\" multiple=\"multiple\">";
         int numPaises = 0;
@@ -53,4 +48,41 @@ public class generacionDinamica {
         cadena +="</select>";
         return cadena;
     }
+	
+	public static String generaChecboxCoP(String cop) {
+        String out="Casado o pareja de hecho";
+        if (cop!=null) {
+            out+= "<input type=\"checkbox\" name=\"casadoOpareja\" value=\"Si\" checked=\"checked\" />" + "\n";
+        }
+        else {
+        	out+= "<input type=\"checkbox\" name=\"casadoOpareja\" value=\"Si\" />" + "\n";
+        }
+        return out;
+	}
+	
+	public static String limpiarNull1(String value) {
+		if (value == null) {
+			value = "No";
+		}
+		return value;
+	}
+	
+	public static String generaChecboxH(String h) {
+        String out="Hijos";
+        if (h!=null) {
+            out+= "<input type=\"checkbox\" name=\"hijo\" value=\"Si\" checked=\"checked\" />" + "\n";
+        }
+        else {
+        	out+= "<input type=\"checkbox\" name=\"hijo\" value=\"Si\" />" + "\n";
+        }
+        return out;
+	}
+	
+	public static String limpiarNull2(String value) {
+		if (value == null) {
+			value = "No";
+		}
+		return value;
+	}
+	
 }
