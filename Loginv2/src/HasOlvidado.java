@@ -61,7 +61,7 @@ public class HasOlvidado extends HttpServlet {
 				if (Funciones.checkPregunta(conn,usuario, request.getParameter("respuesta"))) {
 					out.println("<p>Respuesta acertada, " + usuario + "</p>");
 
-					out.println("<p><a href='CambioSeguridad'>Cambio de contraseï¿½a</a></p>");
+					out.println("<p><a href='CambioSeguridad'>Cambio de contraseña</a></p>");
 					
 				} else {
 

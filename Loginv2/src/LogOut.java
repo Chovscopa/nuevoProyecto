@@ -44,7 +44,7 @@ public class LogOut extends HttpServlet {
 			} else {
 				session.invalidate();
 				out.println("<p>Adios</p>");
-				out.println("<p><a href='ConsultaServlet'>Login</a></p>");
+				out.println("<p><a href='index.html'>Login</a></p>");
 			}
 			out.println("</body></html>");
 		} finally {

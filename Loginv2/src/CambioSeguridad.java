@@ -67,7 +67,7 @@ public class CambioSeguridad extends HttpServlet {
 					
 						
 					
-						out.println("<p>ContraseÃ±a cambiada, " + usuario + "</p>");
+						out.println("<p>Contraseña cambiada, " + usuario + "</p>");
 						
 						HttpSession sesion=request.getSession();
 						
@@ -83,9 +83,9 @@ public class CambioSeguridad extends HttpServlet {
 						errores+="Debes introducir nombre"+"<br>";
 					}
 					if(request.getParameter("Clave")=="") {
-						errores+="Debes introducir contraseÃ±a"+"<br>";
+						errores+="Debes introducir contraseña"+"<br>";
 					}
-					errores+="No coinciden las contraseÃ±as";
+					errores+="No coinciden las contraseñas";
 					
 					
 					//REPINTADO
@@ -119,12 +119,12 @@ public class CambioSeguridad extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>Cambio de ContraseÃ±a Seguridad</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>Cambio de Contraseña Seguridad</legend><br/>");
 		out2.println("<form action=\"CambioSeguridad\" method=\"post\" ");
 		out2.println("<p style=\"color:red\"/>"+errores+"<br>");
 	
-		out2.println("<label for=\"clavenueva\">ContraseÃ±a nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
-		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseÃ±a nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"clavenueva\">Contraseña nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseña nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
 		out2.println("<input type=\"submit\" value=\"Enviar\" name=\"enviar\" />");
 
 		out2.println("</form>\n" + "</fieldset>");
@@ -137,11 +137,11 @@ public class CambioSeguridad extends HttpServlet {
 		out2.println("<meta charset=\"UTF-8\">");
 		out2.println("</head>");
 		out2.println("<body>");
-		out2.println("<fieldset>\n" + "<legend>Cambio de ContraseÃ±a Seguridad</legend><br/>");
+		out2.println("<fieldset>\n" + "<legend>Cambio de Contraseña Seguridad</legend><br/>");
 		out2.println("<form action=\"CambioSeguridad\" method=\"post\" ");
 
-		out2.println("<label for=\"clavenueva\">ContraseÃ±a nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
-		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseÃ±a nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"clavenueva\">Contraseña nueva</label> <input type=\"password\" name=\"clavenueva\" /> <br/> <br/>");
+		out2.println("<label for=\"confirmarclavenueva\">Confirmar la contraseña nueva</label> <input type=\"password\" name=\"confirmarclavenueva\" /> <br/> <br/>");
 		out2.println("<input type=\"submit\" value=\"Enviar\" name=\"enviar\" />");
 
 		out2.println("</form>\n" + "</fieldset>");

@@ -8,9 +8,10 @@ public class Datos {
 
 	static {
 		arrayPaises = new LinkedHashMap<String, String>();
-		arrayPaises.put("ES", "EspaÃ±ola");
+		arrayPaises.put("ES", "Española");
     	arrayPaises.put("FR", "Francesa");
     	arrayPaises.put("IT", "Italiana");
     	arrayPaises.put("PT", "Portuguesa");
-	}	
+	}
+	
 }
