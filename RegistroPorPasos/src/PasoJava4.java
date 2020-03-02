@@ -52,7 +52,7 @@ public class PasoJava4 extends HttpServlet {
 		//asignacion de los campos del formalario a variables de sesion
 		request.getSession().setAttribute("cuenta", cuenta);
 		
-		//
+		
 		String usuario=(String) request.getSession().getAttribute("user");
 		String apellido=(String) request.getSession().getAttribute("Apellidos");
 		String fecha=(String) request.getSession().getAttribute("Fecha");
