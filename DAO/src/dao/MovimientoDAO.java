@@ -2,6 +2,6 @@ package dao;
 
 import pojo.Movimiento;
 
-public interface InterfazMovimiento {
+public interface MovimientoDAO {
 	public void registrar(Movimiento movimiento);
 }
