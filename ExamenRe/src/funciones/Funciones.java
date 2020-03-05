@@ -15,7 +15,7 @@ public class Funciones {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 			String userName = "root";
-			String password = "admin";
+			String password = "";
 
 			String url = "jdbc:mysql://localhost/examenservidor";
 			conn = DriverManager.getConnection(url, userName, password);

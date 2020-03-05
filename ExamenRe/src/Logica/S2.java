@@ -1,7 +1,10 @@
+package Logica;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.util.ArrayList;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import funciones.Funciones;
 import generacionDinamica.Datos;
+import pojo.Movimiento;
 
 
 @WebServlet("/S2")
@@ -38,7 +42,7 @@ public class S2 extends HttpServlet {
 	}
 	
 	protected void embudo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+		
 		HttpSession session = request.getSession();
 		
 		//captar los valores de los campos del fomulario
@@ -48,9 +52,7 @@ public class S2 extends HttpServlet {
 		String[] cue2=request.getParameterValues("cuentas[]2");
 		String c= request.getParameter("cantidadT");
 		
-		
-		
-		
+
 		String errores="";
 		
 		//asignacion de los campos del formalario a variables de sesion
@@ -62,7 +64,7 @@ public class S2 extends HttpServlet {
 		
 		request.getSession().setAttribute("cuentas[]", cue);
 		request.getSession().setAttribute("cuentas[]2", cue2);
-		
+		request.getSession().setAttribute("c", c);
 		
 		String[] sel = (String[]) request.getSession().getAttribute("cuentas[]");
 		
@@ -82,6 +84,16 @@ public class S2 extends HttpServlet {
 		request.getSession().setAttribute("varC1", exo);///pasar la variable al saldoCuentaOrigen.jsp
 		request.getSession().setAttribute("varC2", exo2);///pasar la variable al saldoCuentaDestino.jsp
 		
+		///////////
+		if(arrayMov==null) {
+			arrayMov=new ArrayList<Movimiento>();
+		}
+		request.getSession().setAttribute("arM", arrayMov);
+		///////////
+		
+		
+		
+		
 		//////MUESTRA EL SALDO DE LA CUENTA DE ORIGEN////////
 		if(request.getParameter("saldoN1")!=null){
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/saldoCuentaOrigen.jsp");
@@ -94,17 +106,24 @@ public class S2 extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		}
+		//////MUESTRA LAS TRANSFERENCIAS////////
+		if(request.getParameter("VerTransferencias")!=null){
+			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/verTransferencia.jsp");
+			dispatcher.forward(request, response);
+			
+		}
 		
 		//////*******REALIZA LA TRANSERENCIA*******////////
 		if(request.getParameter("Transferencia")!=null){
-			if(fallos(c,errores,request)) {
+			if(fallos(c,errores,exo,exo2,request)) {////////////////////// 	se podrian dividir los fallos///////////////////
 				RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/FormularioInicial.jsp");
 				dispatcher.forward(request, response);
 			}else {
 					//TRANSFERENCIA//
-				if(!exo.equals(exo2) && c!=null ){
-					Datos.transferenciaRestar(Funciones.conexion(),exo, c);
-					Datos.transferenciaSumar(Funciones.conexion(),exo2, c);
+				if(!exo.equals(exo2) && c!=null && c!=""){
+					Datos.transferencia(Funciones.conexion(),exo,exo2, c);
+					Datos.llenarArrayMov(arrayMov, exo, exo2,c);
+					Datos.verArrayMov(arrayMov);
 					
 					RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/TransferOK.jsp");
 					dispatcher.forward(request, response);
@@ -118,6 +137,7 @@ public class S2 extends HttpServlet {
 		}
 	
 		if(request.getParameter("Salir")!=null){
+			Datos.volcarArrayMov(arrayMov, Funciones.conexion());
 			session.invalidate();
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/PaginaSalida.jsp");
 			dispatcher.forward(request, response);
@@ -127,11 +147,19 @@ public class S2 extends HttpServlet {
 	}
 	
 	
-	protected boolean fallos(String c,String errores, HttpServletRequest request) {
+	protected boolean fallos(String c,String errores,String exo,String exo2,HttpServletRequest request) {
 		boolean sw=false;
 		
-		if (c==null) {
-			errores += "El campo cantidad esta vacÃ­o <br>";
+		if (c=="") {
+			errores += "El campo cantidad esta vacío <br>";
+			sw=true;
+		}
+		if (exo.equals(exo2)) {
+			errores += "No se puede transferir a la misma cuenta <br>";
+			sw=true;
+		}
+		if (Datos.saldoInsuficiente(Funciones.conexion(),exo,c)){
+			errores += "Saldo insuficiente para relizar la operacion <br>";
 			sw=true;
 		}
 		
@@ -139,5 +167,9 @@ public class S2 extends HttpServlet {
 		return sw;
 		
 	}
+	
+	static ArrayList<Movimiento> arrayMov;
+	
+	
 
 }

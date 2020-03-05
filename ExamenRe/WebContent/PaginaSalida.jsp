@@ -10,6 +10,7 @@
 </head>
 <body>
 	<p>Hasta pronto. </p>
+	<a href="FormularioInicial.jsp">Volver</a>
 
 </body>
 </html>

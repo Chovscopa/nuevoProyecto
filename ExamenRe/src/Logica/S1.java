@@ -1,6 +1,9 @@
+package Logica;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import funciones.Funciones;
 import generacionDinamica.Datos;
 
 
@@ -35,24 +39,12 @@ public class S1 extends HttpServlet {
 	
 	protected void embudo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Datos.cargarDatosOrigen();
+		Datos.cargarDatosOrigen(Funciones.conexion());
 		request.getSession().setAttribute("cuentas[]", Datos.datosCuentas);
 		
-	
-		
-		
-		if (request.getSession()== null) {
-			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/FormularioInical.jsp");
-			dispatcher.forward(request, response);
-		}else {
-			
-			request.getSession().getAttribute("cuentas[]");
-			request.getSession().getAttribute("cantidadT");
-
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/FormularioInicial.jsp");
 			dispatcher.forward(request, response);
-		}
-		
+	
 	}
 
 }

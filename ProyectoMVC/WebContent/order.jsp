@@ -15,7 +15,8 @@
 		<strong>Elige un libro y la cantidad:</strong>
 	</p>
 	<form name="AnyadirForm" action="shopping" method="POST">
-		<input type="hidden" name="todo" value="add"> Título: <select
+		<input type="hidden" name="todo" value="add"> Título: 
+		<select
 			name=idLibro>
 			<%
 				// Scriptlet 1: Carga los libros en el select.

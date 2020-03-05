@@ -16,7 +16,7 @@ String v = (String) request.getSession().getAttribute("varC1");
 <title>Insert title here</title>
 </head>
 <body>
-<p>Saldo: <%= Datos.saldo1(v)%> </p>
+<p>Saldo: <%= Datos.saldo1(Funciones.conexion(),v)%> </p>
 
 </body>
 </html>

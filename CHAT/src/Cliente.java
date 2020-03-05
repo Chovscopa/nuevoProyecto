@@ -124,7 +124,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 			//System.out.println(campo1.getText());
 			campochat.append("\n"+nick.getText()+": "+campo1.getText()); //para que ene el campo de mensajes salgan todos los mensajes
 			try {
-				Socket sock=new Socket("192.168.1.11",9999);
+				Socket sock=new Socket("10.230.7.246",9999);
 				
 				PaqueteEnvio datos=new PaqueteEnvio();
 				
