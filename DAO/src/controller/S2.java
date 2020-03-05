@@ -2,7 +2,7 @@ package controller;
 
 
 import java.io.IOException;
-import java.sql.Connection;
+
 import java.util.ArrayList;
 
 
@@ -122,8 +122,9 @@ public class S2 extends HttpServlet {
 					//TRANSFERENCIA//
 				if(!exo.equals(exo2) && c!=null && c!=""){
 					Datos.transferencia(Funciones.conexion(),exo,exo2, c);
-					Datos.llenarArrayMov(arrayMov, exo, exo2,c);
-					Datos.verArrayMov(arrayMov);
+					
+					MovimientoDAOImpl movImpl=new MovimientoDAOImpl();
+					movImpl.llenarArrayMov(arrayMov, exo, exo2,c);
 					
 					RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/TransferOK.jsp");
 					dispatcher.forward(request, response);
@@ -137,7 +138,10 @@ public class S2 extends HttpServlet {
 		}
 	
 		if(request.getParameter("Salir")!=null){
-			Datos.volcarArrayMov(arrayMov, Funciones.conexion());
+			
+			MovimientoDAOImpl movImpl=new MovimientoDAOImpl();
+			movImpl.volcarArrayMov(arrayMov, Funciones.conexion());
+			
 			session.invalidate();
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/PaginaSalida.jsp");
 			dispatcher.forward(request, response);
