@@ -1,6 +1,5 @@
-<%@page import="generacionDinamica.generacionDinamica"%>
-<%@page import="generacionDinamica.Datos"%>
-<%@page import="funciones.Funciones"%>
+<%@page import="utilidades.*"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 

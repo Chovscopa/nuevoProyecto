@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import funciones.Funciones;
-import generacionDinamica.Datos;
+import utilidades.*;
 import pojo.Movimiento;
+import dao.*;
 
 
 @WebServlet("/S2")

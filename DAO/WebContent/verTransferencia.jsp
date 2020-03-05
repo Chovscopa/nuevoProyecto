@@ -1,8 +1,7 @@
-<%@page import="generacionDinamica.generacionDinamica"%>
-<%@page import="generacionDinamica.Datos"%>
+<%@page import="utilidades.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="pojo.*"%>
-<%@page import="funciones.Funciones"%>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
