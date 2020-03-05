@@ -87,15 +87,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 		
 		miboton.addActionListener(ev);
 		//
-		InputMap map = new InputMap();
-
-		map.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false), "pressed");
-		map.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true), "released");
-
-		miboton.setInputMap(0, map);
 		
-		
-		miboton.addKeyListener(new PresionarTecla());
 		//
 		add(miboton);	
 		
@@ -107,14 +99,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 	public void vaciarTxtField() {
 		campo1.setText("");
 	}
-	class PresionarTecla extends KeyAdapter {
-
-	      public void keyPressed(KeyEvent ke) {
-	          if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-	             // btnAceptarActionPerformed(null);
-	          }
-	      }
-	}
+	
 	
 	private class EnviarTexto implements ActionListener{
 
@@ -124,7 +109,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 			//System.out.println(campo1.getText());
 			campochat.append("\n"+nick.getText()+": "+campo1.getText()); //para que ene el campo de mensajes salgan todos los mensajes
 			try {
-				Socket sock=new Socket("10.230.7.246",9999);
+				Socket sock=new Socket("192.168.1.11",9999);
 				
 				PaqueteEnvio datos=new PaqueteEnvio();
 				
