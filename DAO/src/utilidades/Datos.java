@@ -1,22 +1,24 @@
 package utilidades;
 
 
+import pojo.Movimiento;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
-
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 
-import utilidades.Funciones;
+
 
 public class Datos {
 
 	
-	public static String[] datosCuentas = new String[7] ;
+	public static String[] datosCuentas = new String[7] ; ////se puede utilizar la i del rset para crear este array. se mete dentro de cargarDatosOrigen y se hace que devuelva una arraydeStrings
 	//public static List<String> dC=new ArrayList<String>();
 	
 	public static String[] datosCuentasDestino = new String[7] ;
@@ -28,8 +30,7 @@ public class Datos {
 		
 		Statement stmt = null;
 		try {
-
-			
+	
 			stmt = conn.createStatement();
 
 			String sqlStr = "select * from cuentas";
@@ -42,7 +43,7 @@ public class Datos {
 				//dC.add(rset.getString("ncuenta"));
 				i++;
 			}
-
+			System.out.println("Valor de la longitud"+i);
 			if (stmt != null)
 				stmt.close();
 			if (conn != null)
@@ -94,7 +95,7 @@ public class Datos {
 				
 				 
 			}
-			//saldo.toString();
+			
 			if (stmt != null)
 				stmt.close();
 			if (conn != null)
@@ -104,48 +105,6 @@ public class Datos {
 		}
 		return saldo;
 	}
-	
-	public static int transferencia(Connection conn,String nc1,String nc2,String cantidad) {
-		int sw=0;
-		
-		Statement stmt = null;
-		try {
-			
-			stmt = conn.createStatement();
-			
-			String sqlStr = "update cuentas set saldo=saldo-'" +cantidad +"'where ncuenta='"+nc1+ "'";
-			
-			int rset = stmt.executeUpdate(sqlStr);			
-			
-			if (stmt != null)
-				stmt.close();
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
-		///
-		Statement stmt2 = null;
-		try {
-			
-			stmt2 = conn.createStatement();
-			
-			String sqlStr = "update cuentas set saldo=saldo+'" +cantidad +"'where ncuenta='"+nc2+ "'";
-			
-			int rset = stmt2.executeUpdate(sqlStr);			
-			
-			if (stmt2 != null)
-				stmt2.close();
-			if (conn != null)
-				conn.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
-		return sw;
-	}
-	
-	
 	public static boolean saldoInsuficiente(Connection conn,String nc1,String cantidad) {
 		boolean sw=false;
 		

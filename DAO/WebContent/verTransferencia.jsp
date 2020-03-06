@@ -1,13 +1,14 @@
 <%@page import="utilidades.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="pojo.*"%>
+<%@page import="dao.*"%>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
 ArrayList<Movimiento> ar = (ArrayList<Movimiento>) request.getSession().getAttribute("arM");
-
+MovimientoDAOImpl mov=new MovimientoDAOImpl();
 %>
 
 
@@ -18,7 +19,7 @@ ArrayList<Movimiento> ar = (ArrayList<Movimiento>) request.getSession().getAttri
 <title>Insert title here</title>
 </head>
 <body>
-<p>Transeferencias: <br><%= Datos.verArrayMov2(ar)%> </p>
+<p>Transeferencias: <br><%= mov.verArrayMov2(ar)%> </p>
 <a href="FormularioInicial.jsp">Volver</a>
 
 </body>

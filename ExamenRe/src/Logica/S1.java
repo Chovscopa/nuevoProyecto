@@ -38,6 +38,7 @@ public class S1 extends HttpServlet {
 	}
 	
 	protected void embudo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		Datos.cargarDatosOrigen(Funciones.conexion());
 		request.getSession().setAttribute("cuentas[]", Datos.datosCuentas);

@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
-
+import utilidades.*;
 import pojo.Movimiento;
 
 public class MovimientoDAOImpl implements MovimientoDAO{

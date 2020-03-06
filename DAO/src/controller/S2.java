@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import utilidades.*;
-import pojo.Movimiento;
+import pojo.*;
 import dao.*;
 
 
@@ -90,9 +90,7 @@ public class S2 extends HttpServlet {
 		}
 		request.getSession().setAttribute("arM", arrayMov);
 		///////////
-		
-		
-		
+
 		
 		//////MUESTRA EL SALDO DE LA CUENTA DE ORIGEN////////
 		if(request.getParameter("saldoN1")!=null){
@@ -121,7 +119,11 @@ public class S2 extends HttpServlet {
 			}else {
 					//TRANSFERENCIA//
 				if(!exo.equals(exo2) && c!=null && c!=""){
-					Datos.transferencia(Funciones.conexion(),exo,exo2, c);
+					//Cuenta acc = new Cuenta();
+					CuentaDAOImpl cuentasIpml=new CuentaDAOImpl();
+					cuentasIpml.transferencia(Funciones.conexion(), exo, exo2, c);
+					
+					//Datos.transferencia(Funciones.conexion(),exo,exo2, c);
 					
 					MovimientoDAOImpl movImpl=new MovimientoDAOImpl();
 					movImpl.llenarArrayMov(arrayMov, exo, exo2,c);
@@ -155,7 +157,7 @@ public class S2 extends HttpServlet {
 		boolean sw=false;
 		
 		if (c=="") {
-			errores += "El campo cantidad esta vacï¿½o <br>";
+			errores += "El campo cantidad esta vacío <br>";
 			sw=true;
 		}
 		if (exo.equals(exo2)) {
