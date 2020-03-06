@@ -107,7 +107,7 @@ public class S2 extends HttpServlet {
 			
 		}
 		//////MUESTRA LAS TRANSFERENCIAS////////
-		if(request.getParameter("VerTransferencias")!=null){
+		if(request.getParameter("VerTransferencias")!=null){////fghfghg
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/verTransferencia.jsp");
 			dispatcher.forward(request, response);
 			
