@@ -156,15 +156,17 @@ public class S2 extends HttpServlet {
 	protected boolean fallos(String c,String errores,String exo,String exo2,HttpServletRequest request) {
 		boolean sw=false;
 		
+		CuentaDAOImpl cuentaImpl=new CuentaDAOImpl();
+		
 		if (c=="") {
-			errores += "El campo cantidad esta vacío <br>";
+			errores += "El campo cantidad esta vacï¿½o <br>";
 			sw=true;
 		}
 		if (exo.equals(exo2)) {
 			errores += "No se puede transferir a la misma cuenta <br>";
 			sw=true;
 		}
-		if (Datos.saldoInsuficiente(Funciones.conexion(),exo,c)){
+		if (cuentaImpl.saldoInsuficiente(Funciones.conexion(),exo,c)){
 			errores += "Saldo insuficiente para relizar la operacion <br>";
 			sw=true;
 		}
