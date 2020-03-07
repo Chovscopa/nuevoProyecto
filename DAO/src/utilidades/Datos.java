@@ -1,15 +1,9 @@
 package utilidades;
 
 
-import pojo.Movimiento;
-import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
+
+import java.sql.*;
+
 import java.util.LinkedHashMap;
 
 
@@ -28,13 +22,13 @@ public class Datos {
 	
 	public static void cargarDatosOrigen(Connection conn) {
 		
-		Statement stmt = null;
+		
 		try {
-	
-			stmt = conn.createStatement();
-
 			String sqlStr = "select * from cuentas";
-			ResultSet rset = stmt.executeQuery(sqlStr);
+			PreparedStatement pstmt=conn.prepareStatement(sqlStr);
+
+			
+			ResultSet rset = pstmt.executeQuery();
 			
 			int i = 0;
 			
@@ -44,8 +38,8 @@ public class Datos {
 				i++;
 			}
 			System.out.println("Valor de la longitud"+i);
-			if (stmt != null)
-				stmt.close();
+			if (pstmt != null)
+				pstmt.close();
 			if (conn != null)
 				conn.close();
 		} catch (Exception ex) {

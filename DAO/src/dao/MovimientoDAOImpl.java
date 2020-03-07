@@ -1,8 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -24,15 +22,24 @@ public class MovimientoDAOImpl implements MovimientoDAO{
 	}
 
 	@Override
+	
 	public void volcarArrayMov(ArrayList<Movimiento> ar, Connection conn) {
-		Statement stmt = null;
+		
 		
 		try {
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 			for(int i=0;i<ar.size();i++) {
-				String sqlStr = "INSERT INTO movimientos VALUES(null, '" + ar.get(i).getFecha() + "',"+ "'" + ar.get(i).getCuentaOrigen() + "',"+ "'" + ar.get(i).getCuentaDestino() + "',"+ "'" +ar.get(i).getCantidad()+ "')";
-				
-				stmt.executeUpdate(sqlStr);
+				//String sqlStr = "INSERT INTO movimientos VALUES(null, '" + ar.get(i).getFecha() + "',"+ "'" + ar.get(i).getCuentaOrigen() + "',"+ "'" + ar.get(i).getCuentaDestino() + "',"+ "'" +ar.get(i).getCantidad()+ "')";
+				String sqlStr = "INSERT INTO movimientos VALUES(null, ? , ? , ? , ? )";
+
+				PreparedStatement pstmt=conn.prepareStatement(sqlStr);
+				pstmt.setDate(1, ar.get(i).getFecha());
+				pstmt.setString(2, ar.get(i).getCuentaOrigen());
+				pstmt.setString(3, ar.get(i).getCuentaDestino());
+				pstmt.setString(4,ar.get(i).getCantidad());
+				int rset = pstmt.executeUpdate();	
+				if (pstmt != null)
+					pstmt.close();
 			}
 		} catch (SQLException e) {
 			

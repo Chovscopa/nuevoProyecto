@@ -1,9 +1,11 @@
 package dao;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+
+import java.sql.*;
+
+
 
 
 import utilidades.Funciones;
@@ -15,35 +17,36 @@ public class CuentaDAOImpl implements CuentaDAO{
 	@Override
 	public int transferencia(Connection conn,String nc1,String nc2,String cantidad) {
 		int sw=0;
-		
-		Statement stmt = null;
+
 		try {
+			String sqlStr = "update cuentas set saldo=saldo - ? where ncuenta = ? ";
+			PreparedStatement pstmt=conn.prepareStatement(sqlStr);
 			
-			stmt = conn.createStatement();
+			pstmt.setString(1,cantidad);
+			pstmt.setString(2,nc1);
 			
-			String sqlStr = "update cuentas set saldo=saldo-'" +cantidad +"'where ncuenta='"+nc1+ "'";
+			int rset = pstmt.executeUpdate();			
 			
-			int rset = stmt.executeUpdate(sqlStr);			
-			
-			if (stmt != null)
-				stmt.close();
+			if (pstmt != null)
+				pstmt.close();
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		
 		///
-		Statement stmt2 = null;
+		
 		try {
+			String sqlStr2 = "update cuentas set saldo=saldo + ? where ncuenta = ? ";
+			PreparedStatement pstmt2 = conn.prepareStatement(sqlStr2);
 			
-			stmt2 = conn.createStatement();
+			pstmt2.setString(1,cantidad);
+			pstmt2.setString(2,nc2);
+		
+			int rset2 = pstmt2.executeUpdate();			
 			
-			String sqlStr = "update cuentas set saldo=saldo+'" +cantidad +"'where ncuenta='"+nc2+ "'";
-			
-			int rset = stmt2.executeUpdate(sqlStr);			
-			
-			if (stmt2 != null)
-				stmt2.close();
+			if (pstmt2 != null)
+				pstmt2.close();
 			if (conn != null)
 				conn.close();
 		} catch (Exception ex) {
@@ -57,21 +60,21 @@ public class CuentaDAOImpl implements CuentaDAO{
 	public BigDecimal saldo1(Connection conn, String ncuentaParam) {
 		BigDecimal saldo=new BigDecimal("0.0");
 		 
-		Statement stmt = null;
+		
 		try {
+			String sqlStr = "select * from cuentas where ncuenta= ? ";
+			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 			
-			stmt = conn.createStatement();
-			String sqlStr = "select * from cuentas where ncuenta='"+ncuentaParam+ "'";
-			
-			ResultSet rset = stmt.executeQuery(sqlStr);			
+			pstmt.setString(1, ncuentaParam);
+			ResultSet rset = pstmt.executeQuery();			
 			if (rset.next()) {	
 				saldo= rset.getBigDecimal("saldo");
 				
 				 
 			}
 			
-			if (stmt != null)
-				stmt.close();
+			if (pstmt != null)
+				pstmt.close();
 			if (conn != null)
 				conn.close();
 		} catch (Exception ex) {
