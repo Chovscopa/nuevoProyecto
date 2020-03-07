@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import pojo.Cuenta;
+
 import utilidades.Funciones;
 
 public class CuentaDAOImpl implements CuentaDAO{

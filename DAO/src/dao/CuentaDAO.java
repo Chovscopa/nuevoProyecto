@@ -2,10 +2,7 @@ package dao;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
-import pojo.Cuenta;
 
 public interface CuentaDAO {
 	
