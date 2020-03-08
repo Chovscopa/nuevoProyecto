@@ -47,3 +47,9 @@ public class controladorLogin extends HttpServlet {
 	}
 
 }
+/*
+<Resource name="jdbc/tiendalibros" auth="Container" type="javax.sql.DataSource"
+maxActive="100" maxIdle="30" maxWait="10000" removeAbandoned="true"
+username="root" password="admin" driverClassName="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost:3306/tiendalibros" />
+*/
