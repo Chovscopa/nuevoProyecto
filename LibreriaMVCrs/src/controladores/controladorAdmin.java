@@ -50,13 +50,17 @@ public class controladorAdmin extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		doPost(request, response);
+		
+		embudo(request, response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		embudo(request, response);
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	protected void embudo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesion=request.getSession();
 		String admin=(String)sesion.getAttribute("usuario");
 		request.setAttribute("usuario", admin);

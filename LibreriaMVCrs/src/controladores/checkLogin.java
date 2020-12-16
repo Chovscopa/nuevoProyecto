@@ -34,7 +34,7 @@ public class checkLogin extends HttpServlet {
     
 	@Override
 	public void init() throws ServletException {
-		// TODO Auto-generated method stub
+	
 		super.init();
 		
 		//Iniciamos la conexion
