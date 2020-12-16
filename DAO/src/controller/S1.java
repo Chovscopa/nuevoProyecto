@@ -29,7 +29,7 @@ public class S1 extends HttpServlet {
         super();
     }
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		embudo(request, response);
