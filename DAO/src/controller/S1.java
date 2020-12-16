@@ -50,5 +50,5 @@ public class S1 extends HttpServlet {
 			dispatcher.forward(request, response);
 	
 	}
-//SS
+
 }
