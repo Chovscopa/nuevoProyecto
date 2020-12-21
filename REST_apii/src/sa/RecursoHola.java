@@ -43,7 +43,7 @@ public class RecursoHola {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String direBonjour() throws ClassNotFoundException {
+	public String direBonjour(){
 
 		contador++;
 
