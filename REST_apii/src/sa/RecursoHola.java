@@ -37,8 +37,8 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/")
 
-public class HelloResource {
-	// static contador;
+public class RecursoHola {
+	
 	private static int contador = 0;
 
 	@GET
