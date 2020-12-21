@@ -18,7 +18,7 @@ public class RecursoHola {
 
 		contador++;
 
-		return "Bienvenido a CRUD RESTful 2 " + "Contador de visitas: " + contador;
+		return "Bienvenido a CRUD RESTful " + "Contador de visitas: " + contador;
 
 	}
 }
