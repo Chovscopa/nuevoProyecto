@@ -43,7 +43,7 @@ public class RecursoHola {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String direBonjour(){
+	public String saludoContador(){
 
 		contador++;
 
