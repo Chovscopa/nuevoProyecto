@@ -28,6 +28,15 @@ public class ProductDAO {
 		return new ArrayList<Product>(data);
 	}
 	
+	public Product get(int id) {
+		Product productToFind = new Product(id);
+		int index = data.indexOf(productToFind);
+		if (index >= 0) {
+			return data.get(index);
+		}
+		return null;
+	}
+	
 	public int add(Product product) {
 		int newId = data.size() + 1;
 		product.setId(newId);
@@ -36,13 +45,13 @@ public class ProductDAO {
 		return newId;
 	}
 	
-	public Product get(int id) {
-		Product productToFind = new Product(id);
-		int index = data.indexOf(productToFind);
+	public boolean update(Product product) {
+		int index = data.indexOf(product);
 		if (index >= 0) {
-			return data.get(index);
+			data.set(index, product);
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
 	public boolean delete(int id) {
@@ -53,15 +62,6 @@ public class ProductDAO {
 			return true;
 		}
 		
-		return false;
-	}
-	
-	public boolean update(Product product) {
-		int index = data.indexOf(product);
-		if (index >= 0) {
-			data.set(index, product);
-			return true;
-		}
 		return false;
 	}
 }
