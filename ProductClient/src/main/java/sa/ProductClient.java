@@ -33,6 +33,16 @@ public class ProductClient {
 	     
 	    System.out.println(product);       
 	}
+	
+	static void testAdd() {
+	    WebTarget target = getWebTarget();
+	    Product product = new Product("ZenFoneX", 888.88f);
+	    Response response = target.request()
+	            .post(Entity.entity(product, MediaType.APPLICATION_JSON), Response.class);
+	     
+	    System.out.println(response.getLocation().toString());
+	}
+	
 	public static void main(String[] args) {
 		//testList();
 		testGet();
