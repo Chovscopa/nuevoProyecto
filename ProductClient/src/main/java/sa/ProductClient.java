@@ -26,7 +26,7 @@ public class ProductClient {
 	
 	static void testGet() {
 	    WebTarget target = getWebTarget();
-	    String productId = "3";
+	    String productId = "2";
 	    Product product = target.path(productId)
 	                .request().accept(MediaType.APPLICATION_JSON)
 	                .get(Product.class);
@@ -34,7 +34,8 @@ public class ProductClient {
 	    System.out.println(product);       
 	}
 	public static void main(String[] args) {
-		testList();
+		//testList();
+		testGet();
 
 	}
 
