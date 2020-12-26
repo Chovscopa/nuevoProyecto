@@ -1,11 +1,9 @@
 package sa;
 
-import java.util.Scanner;
-
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
-
 import org.glassfish.jersey.client.ClientConfig;
+import java.util.Scanner;
 
 public class ProductClient {
 
@@ -60,8 +58,7 @@ public class ProductClient {
 		Product product = new Product(nombre, precio);
 		System.out.println("Introduzca ID");
 		String productId = sc.nextLine();
-		Response response = target.path(productId).request().put(Entity.entity(product, MediaType.APPLICATION_JSON),
-				Response.class);
+		Response response = target.path(productId).request().put(Entity.entity(product, MediaType.APPLICATION_JSON),Response.class);
 		System.out.println(response);
 	}
 
