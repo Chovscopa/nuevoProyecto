@@ -111,7 +111,7 @@ public class ProductClient {
 					break;
 					
 				case 6:
-					System.out.println("adios ");
+					System.out.println("BYE BYE RESTful");
 					break;
 		
 				default:
