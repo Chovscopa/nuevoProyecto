@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 public class RecursoHola {
 	
-	private static int contador = 0;
+	private static int contador;
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
