@@ -38,8 +38,7 @@ public class ProductDAO {
 	}
 	
 	public int add(Product product) {
-		//int newId = data.size() + 1;
-		int newId = (data.get(data.size()-1).getId())+1;
+		int newId = data.size() + 1;
 		product.setId(newId);
 		data.add(product);
 		
@@ -66,8 +65,8 @@ public class ProductDAO {
 		return false;
 	}
 }
-//AÑADIR curl -v -X POST -H "Content-Type: application/json" -d "{\"name\":\"MacPro\",\"price\":3000}" http://localhost:8080/REST_apiii/products
-//LISTAR curl http://localhost:8080/REST_apiii/products/
-//BUSCAR POR ID curl http://localhost:8080/REST_apiii/products/2
-//MODIFICAR POR ID curl -v -X PUT -H "Content-Type: application/json" -d "{\"name\":\"iPad\",\"price\":888}" http://localhost:8080/REST_apiii/products/1
-//ELIMINAR POR ID curl -v -X DELETE http://localhost:8080/REST_apiii/products/2
+//AÑADIR curl -v -X POST -H "Content-Type: application/json" -d "{\"name\":\"MacPro\",\"price\":3000}" http://localhost:8080/REST_apii/products
+//LISTAR curl http://localhost:8080/REST_apii/products/
+//BUSCAR POR ID curl http://localhost:8080/REST_apii/products/2
+//MODIFICAR POR ID curl -v -X PUT -H "Content-Type: application/json" -d "{\"name\":\"iPad\",\"price\":888}" http://localhost:8080/REST_apii/products/1
+//ELIMINAR POR ID curl -v -X DELETE http://localhost:8080/REST_apii/products/2
