@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ProductClient {
 
-	private static String baseURI = "http://localhost:8080/REST_apiii/products";
+	private static String baseURI = "http://localhost:8080/REST_apii/products";
 	private static Scanner sc;
 
 	static WebTarget getWebTarget() {

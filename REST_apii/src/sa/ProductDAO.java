@@ -39,7 +39,9 @@ public class ProductDAO {
 	}
 	
 	public int add(Product product) {
-		int newId = data.size() + 1;
+		//int newId = data.size() + 1;
+		int newId = (data.get(data.size()-1).getId())+1;
+					
 		product.setId(newId);
 		data.add(product);
 		
